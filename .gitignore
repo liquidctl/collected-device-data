@@ -1,0 +1,14 @@
+# too large and (mostly) redudant
+/Corsair RM650i/02 - */**/*.txt
+/Corsair RM650i/02 - generic capture - olielvewen/balancedcurve/switchbalancedcurve.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/curvequiet/switchtoquietcurve.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/extremecurve/extremecurve.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/graphics/switchto1minutestooneday.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/multitomono/1firstcapture.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/multitomono/switchmultitomono.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/multitomono/switchmultitomono2.pcapng.gz
+/Corsair RM650i/02 - generic capture - olielvewen/percentfixed/switchtopercentfixed.pcapng.gz
+/Corsair RM650i/03 - multiple-rail ocp capture - olielvewen/mono-rmi-reverse-jonas.pcapng
+
+# not useful
+/NZXT Kraken X62/02 - *
