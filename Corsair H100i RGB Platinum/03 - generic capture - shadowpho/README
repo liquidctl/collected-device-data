@@ -1,0 +1,37 @@
+Provided by: shadowpho (for OpenCorsairLink)
+Provided at: 2019-12-12
+Source: https://github.com/audiohacked/OpenCorsairLink/files/3958606/test1.txt
+Source: https://github.com/audiohacked/OpenCorsairLink/pull/214#issuecomment-565266061
+
+---
+
+From original comment:
+
+> For some reason I only get 3 entries that have the right vendor code...
+> 
+> 1. unplug
+> 2. wait 10 seconds
+> 3. plug
+> 
+> open icue
+> 
+> FAN#1 379 RPM (balanced)
+> Fan#2 352 RPM (balanced)
+> Pump 2359 RPM
+> Temp 23.9C
+> 
+> 4. change fan1 to ZERO RPM - goes down 0 RPM
+> 
+> 5. change fan2 to ZERO RPM -- goes down to 0 RPM
+> 
+> 6. changed fan2 to extreme -- goes up to 1515 rpm (slowly)
+> 
+> 7. changed fan1 to balanced -- goes up to 373 rpm slowly
+> 
+> 8. change pump to balanced - goes down to 2349 rpm
+> 
+> 9. change pump to quiet (1911 rpm)
+> 
+> 10. change pump to extreme (2856 rpm)
+> 
+> 11. changed everything to balanced (380, 380, 2348)

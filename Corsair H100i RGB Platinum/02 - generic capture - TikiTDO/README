@@ -1,0 +1,13 @@
+Provided by: TikiTDO (for OpenCorsairLink)
+Provided at: 2019-10-03
+Source: https://github.com/audiohacked/OpenCorsairLink/files/3684714/h100i_usb_dump.txt
+Source: https://github.com/audiohacked/OpenCorsairLink/issues/146#issuecomment-537806342
+
+---
+
+From original comment:
+
+> This starts from connecting the driver to my VM, then I go through a few with
+> different colors / color modes, and finally I try setting a bunch of fan
+> modes and create a new mode, and finishes with me disconnecting the device
+> from the VM.
