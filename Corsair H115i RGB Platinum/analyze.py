@@ -25,7 +25,7 @@ def parse_inc(msg):
     coolant = msg[8] + msg[7] / 256
     print(f'  coolant: {coolant:.1f}°C')
     for name, base in [('fan1', 14), ('fan2', 21), ('pump', 28)]:
-        duty = msg[base] / 255
+        duty = msg[base] / 255  # TODO check
         rpm = int.from_bytes(msg[base + 1:base + 3], byteorder='little')
         print(f'  {name}: {duty:.0%}, {rpm} rpm ({msg[base]:02x})')
     # only possible match to fw version reported by iCue
