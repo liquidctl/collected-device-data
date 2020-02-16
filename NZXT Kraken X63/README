@@ -1,0 +1,15 @@
+NZXT Kraken X63
+===============
+
+General notes
+-------------
+
+vendor := 0x1e71 (NZXT)
+product := 0x2007 (maybe shared with X53 and X73?)
+bcdDevice := 2.01 (maybe firmware version?)
+bNumConfigurations := 1
+
+interface 0:
++-- hid
++-- ep 1 in, int, 64 bytes (probably for status in)
++-- ep 1 out, int, 64 bytes (probably for lighting and cooling out)
