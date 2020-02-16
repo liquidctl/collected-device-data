@@ -6,7 +6,7 @@ General notes
 
 vendor := 0x1e71 (NZXT)
 product := 0x3008 (NZXT KrakenZ Device; probably shared with Z73)
-bcdDevice := 5.00 (firmware version?)
+bcdDevice := 5.00 ([initial?] firmware version)
 bNumConfigurations := 1
 
 interface 0:
