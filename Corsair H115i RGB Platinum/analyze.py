@@ -27,7 +27,7 @@ def parse_inc(msg):
     for name, base in [('fan1', 14), ('fan2', 21), ('pump', 28)]:
         duty = msg[base] / 255  # TODO check
         rpm = int.from_bytes(msg[base + 1:base + 3], byteorder='little')
-        print(f'  {name}: {duty:.0%}, {rpm} rpm ({msg[base]:02x})')
+        print(f'  {name}: {duty:.0%}, {rpm} rpm')
     # only possible match to fw version reported by iCue
     print(f'  firmware: {msg[2] >> 4}.{msg[2] & 0xf}.{msg[3]}')
 
@@ -35,9 +35,23 @@ def parse_inc(msg):
 def parse_out(msg):
     # msg[1] is the only byte left when setting all LEDs to blue
     # seq and cmd found analyzing how each bit varies over time (see _data_out.ods)
+    # cmd parsing done with device emulation
     seq = msg[1] >> 3
     cmd = msg[1] & 0x7
-    print(f'  cmd: {cmd:03b}')
+    if cmd == 0b100:
+        print(f'  cmd: set lighting (1/2)')
+    elif cmd == 0b101:
+        print(f'  cmd: set lighting (2/2)')
+    elif cmd == 0b000 and msg[2] == 0x14:
+        print(f'  cmd: set cooling')
+        # print(f'  fan1 := <settings>')
+        # print(f'  fan2 := <settings>')
+        pump_mode = ['quiet', 'balanced', 'extreme'][msg[23]]  # TODO check
+        print(f'  pump mode := {pump_mode}')
+    elif cmd == 0b000 and msg[2] == 0xff:
+        print(f'  cmd: get status')
+    else:
+        raise ValueError(f'Unknown command: {cmd:03b}')
 
 
 if __name__ == '__main__':
