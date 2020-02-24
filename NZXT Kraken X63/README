@@ -17,7 +17,7 @@ interface 0:
 Incomming reports
 -----------------
 
-some examples:
+some examples (hex);
 +-- 75023e004f001351535739303420012100cc0a646400000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 +-- 11013e004f0013515357393034200720020201000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 +-- 71013e004f0013515357393034200100010100000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -31,3 +31,24 @@ some examples:
 
 maximum (used) data length := 27 bytes
 use of packet error checking := no (apparently)
+
+status fields (first guesses):
++-- only if buf[0] == 0x75
++-- coolant temperature := buf[0x0f] + buf[0x10]/10
++-- pump speed := buf[0x11] << 8 | buf[0x12]
+
+firmware info fields (first guesses):
++-- only if buf[0] == 0x11
++-- major version := 0x11
++-- minor version := 0x12
++-- patch version := 0x13
+
+Initialization
+--------------
+
+appears similar to HUE 2 devices:
++-- request firmware info (send hex 1001 + nulls)
++-- request led info (send hex 2003 + nulls)
++-- initialize 1/2 (send hex 700201b80b + nulls)
++-- initialize 2/2 (send hex 7001 + nulls)
++-- read until and parse firmware (0x11) and led (0x21) info responses
