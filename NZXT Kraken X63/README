@@ -39,9 +39,9 @@ status fields (first guesses):
 
 firmware info fields (first guesses):
 +-- only if buf[0] == 0x11
-+-- major version := 0x11
-+-- minor version := 0x12
-+-- patch version := 0x13
++-- major version := buf[0x11]
++-- minor version := buf[0x12]
++-- patch version := buf[0x13]
 
 Initialization
 --------------
