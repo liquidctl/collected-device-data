@@ -1,0 +1,32 @@
+Provided-by: @inglor
+Provided-at: 26 Feb 2020
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4255550/nzxt_kraken_z63_staring_CAM.zip
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/79#issuecomment-591395980
+
+Accompanying notes from @inglor:
+
+ - If you don't have installed the NZXT CAM version or you start from a cold
+   start (shutdown, power-off the PSU for 10 seconds and power on and start
+   windows/linux) the Kraken Z63 displays the current Liquid temperature in
+   white text (default orientation).
+ - Once you start the NZXT CAM in windows it updates the LCD screen with what
+   you've configured in the CAM settings and adds the colors.
+ - The default "profile" of the Z63 without CAM is to have both pump and fans
+   set to silent profile and it doesn't spin up or down while stressing the
+   CPU. The Liquid temperature after a few cinebenches goes up to 31 C from 29
+   C and max CPU temp from motherboard is around 70 C for my setup (AMD 3950x).
+ - If you shut down the CAM in windows the LCD screen stays static. It doesn't
+   update but just shows the latest update from when CAM was running, which
+   leads to me believe the LCD is pretty dump and just calculates the next
+   frame and shows it.
+ - If you restart of do a soft shutdown (no power down of the PSU) the Kraken
+   Z63 shows the latest static image from the last time CAM was running - I
+   assume this will be the same if you dual boot to linux after windows, but
+   haven't tried it yet.
+ - If you start CAM the fans and pump seems to be monitoring CPU temperature as
+   I see them spin up when running a bentchmark and spin down after it
+   finishes. It's not ideal and I'd rather monitor the Liquid temperature
+ - After various attempts on the Wireshark to capture the USB data I've finally
+   got some data.  This is from a cold reboot to starting and closing CAM
+   software so I presume the initiallization process and a few updates on CPU
+   temp.

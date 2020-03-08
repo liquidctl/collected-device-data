@@ -1,0 +1,15 @@
+Provided-by: @astowe1080
+Provided-at: 8 Mar 2020
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4303782/CAMdata.zip
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/79#issuecomment-596244179
+
+Accompanying notes from @astowe1080:
+
+1. Launching CAM, letting it automatically load the dual CPU/GPU infographic
+function, exiting CAM
+
+2. Launching CAM, letting it automatically load the dual CPU/GPU infographic
+function, switching to .gif display, selecting and loading a .gif, exiting CAM
+
+3. Launching CAM, letting it automatically load the dual CPU/GPU infographic
+function, switching to "Spectrum Wave” function, exiting CAM
