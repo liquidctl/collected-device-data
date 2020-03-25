@@ -1,0 +1,10 @@
+Provided-by: @Evils-Devils
+Provided-at: 2020-03-22
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4365070/e500_trimmed_2020-03-22.pcapng.gz
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/96#issuecomment-602181615
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4365523/e500_filtered_2020-03-22-connect_disconnect.pcapng.gz
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4365524/e500_filtered_2020-03-22_connect-redirect_to_win10-launch_CAM-wait-shutdown_win10.pcapng.gz
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4365526/e500_filtered_2020-03-22_boot-win10_redir-usb_start-CAM_set-MR-OCP_set-39-4-4_set-39-6-2_set-40-6-2_set-40-4-4_unset-MR-ORP_stop-win10.pcapng.gz
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/96#issuecomment-602208245
+
+Important note: unit is not behaving correctly (missing current reads)
