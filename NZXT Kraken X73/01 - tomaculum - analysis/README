@@ -1,0 +1,278 @@
+Provided-by: @tomaculum
+Provided-at: 2020
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/78
+Source: https://github.com/jonasmalacofilho/liquidctl/pull/100
+
+Selected quotes
+
+I can confirm that product id is the same on the X73, firmware version is in my case v2.1, your assumption regarding the coolant temperature is correct and pump speed is just flipped: `buf[0x12] << 8 | buf[0x11]`.
+
+---
+
+Here is a quick summary of the message types I've found:
+
+### startup
+
+> r = read, w = write
+
+| data[0] | data[1] | direction  | type |  |
+| :------------- |:-------------:| :-----:| :----- | :----- |
+| `0x75` | `0x02` | r | device status | received periodically
+| `0x10` | `0x01` | w | request firmware info |
+| `0x20` | `0x03` | w | request lightning info |
+| `0x70` | `0x02` | w | initialize 1 |
+| `0x11` | `0x01` | r | firmware info response |
+| `0x70` | `0x01` | w | initialize 2 |
+| `0x71` | `0x01` | r | unknown response | only with initialize |
+| `0x21` | `0x03` | r | lightning info response |
+
+_+ set colors, set pump speed_
+
+* in CAM the description label says ring is channel 2 and logo channel 3 and there seems to be no channel 1? But the startup sequence will set a color for three devices: `0x01`, `0x02`, `0x04`.
+
+<details><summary>show examples: </summary>
+<p>
+
+```
+# request firmware info
+10010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# request lightning info
+20030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# initialize 1
+700201b80b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# initialize 2
+70010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# firmware info response
+1101180040000c574154333634200720020201000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# unknown response
+7101180040000c574154333634200100010100000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# led / device info
+2103180040000c574154333634200300000000000010000000000011000000000000000000000000000000000000000000000000000000000000000000000000
+```
+
+</p>
+</details>
+
+### pump speed
+| data[0] | data[1] | direction  | type |  |
+| :------------- |:-------------:| :-----:| :----- | :----- |
+| `0x75` | `0x02` | r | device status | received periodically
+| `0x72` | `0x01` | w | set pump mode |
+
+**set pump mode:**
+* this is really strange, if you select performance, it will send many `0x46` values (= 70%) to the pump. If I select the silent profile, it will send `0x3c` values (= 60%). But if I select a fully custom curve, it still sends only one percent value instead of the curve.
+* in addition to that it seems to make no difference if I select the liquid or cpu temperature as source for the curve.
+
+<details open><summary>show examples: </summary>
+<p>
+
+```
+# change mode to silent
+720100003c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c0000000000000000000000000000000000000000
+# change only temperature mode from cpu to liquid
+720100003c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c0000000000000000000000000000000000000000
+# change mode to performance
+72010000464646464646464646464646464646464646464646464646464646464646464646464646464646460000000000000000000000000000000000000000
+# change mode to custom
+72010000474747474747474747474747474747474747474747474747474747474747474747474747474747470000000000000000000000000000000000000000
+```
+
+</p>
+</details>
+
+### color
+| data[0] | data[1] | direction  | type |  |
+| :------------- |:-------------:| :-----:| :----- | :----- |
+| `0x75` | `0x02` | r | device status | received periodically
+| `0x2a` | `0x04` | w | set color |
+| `0xff` | `0x01` | r | color response |
+
+**set color:**
+* `data[2]`, `data[3]` could be the device address: `0x02`, `0x02` is ring and `0x04`, `0x04` is logo
+* `data[7]`, `data[8]`, `data[9]` seems to be the RGB values of the selected color but in another order: GRB?
+At least if I set the color manually to `#FF9600` it results in:
+`data[7] = 96`, `data[8] = ff`, `data[9] = 00`
+* `data[4]` is the color mode which seems to be equal to the smart device v2 and kraken X2 codes
+
+<details open><summary>show examples </summary>
+<p>
+
+```
+# ring to fixed color white:
+2a040202003200ffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100080300000000
+# ring fixed color brightness to low:
+2a0402020032000f0f0f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100080300000000
+# ring fixed color change to #FF9600:
+2a04020200320096ff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100080300000000
+# ring fixed to fading three colors:
+2a04020201280000517aff00000000ff000000000000000000000000000000000000000000000000000000000000000000000000000000000308080300000000
+# logo to fixed color white:
+2a040404003200ffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100010300000000
+# logo fixed color brightness to low:
+2a0404040032000a0a0a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100010300000000
+```
+
+</p>
+</details>
+
+**color response:**
+* `data[2-14]` is equal to the status response and `data[15]` seems to be always `0x04`, the rest is filled with `0x00`
+
+<details><summary>show examples: </summary>
+<p>
+
+```
+# ring to fixed color white:
+ff01180040000c574154333634202a04000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# logo fixed color brightness to low:
+ff01180040000c574154333634202a04000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+```
+
+</p>
+</details>
+
+### Questions
+@jonasmalacofilho
+1. ~~Does the pump speed write request look equally to those in X2 devices or do you know what this percentage value is about?~~
+
+***Edit:***
+I've found out that CAM sends the new percentage values dynamically. The pump doesn't know the whole curve and only knows its current percentage. Previously my PC pretty much just idled in Windows therefore I couldn't observe this.
+
+2. Is this something new or did the X2 devices did have a fixed pump speed outside of Windows, too?
+
+3. The _set color_ request seems very strange. Is it possible that this a similar structure like the X2 device _set_color_ request? If yes, I would start trying to understand what this _set_color_ method does.
+
+---
+
+Ok, I think I did find out enough to implement the single message color changes:
+
+| byte | purpose | |
+| :--- | :--- | :--- |
+| `0` | op code | always `0x2a` |
+| `1` | op code | always `0x04` |
+| `2` | address | `0x02` - ring <br>`0x04` - logo  |
+| `3` | address | `0x02` - ring <br>`0x04` - logo  |
+| `4` | mode | mostly as in SmartDevice V2 driver |
+| `5` | speed value | see tables below
+| `6` | speed value |
+| `7` | color 1 G value |
+| `8` | color 1 R value |
+| `9` | color 1 B value |
+| `10` | color 2 G value |
+| `11` - `54` | … |
+| `55` | backwards byte | some mode related byte<br>backwards mode: `value` + `0x02`<br>`0x01`: alternating moving, starry night<br>`0x04`: marquee, covering marquee<br>`0x00`: everything else
+| `56` | number of colors in request | e.g. mode _fixed_ will pass one color: `0x01`
+| `57` | some kind of mode related byte | always `0x00` <br> except  <br>`0x08` fading, pulse, breathing <br>`0x05` water cooler, tai chi  <br>`0x04` loading
+| `58` |  static value - maybe available leds? | `0x08`- ring, `0x01`- logo |
+| `59` |  _marquee_ or _alternating_ LED size | always `0x03`<br>except in marquee and alternating mode for LED size:<br>`0x03` - 3 LEDs<br>`0x04` - 4 LEDs<br>`0x05` - 5 LEDs<br>`0x06` - 6 LEDs
+
+### Question:
+Only thing I don't like much are the speed bytes. I kind of hope to find a pattern to avoid hardcoding all those values. Does anyone find a pattern or grouping which would reduce this?
+
+**scale 0:** fixed, candle
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest | - | - |  |
+| slow | - | - |  |
+| normal | `0x32` | `0x00` | `50` |
+| fast | - | - |  |
+| fastest | - | - |  |
+
+**scale 1:** fading
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x50` | `0x00` | `80` |
+| slow | `0x3c` | `0x00` | `60` |
+| normal | `0x28` | `0x00` | `40` |
+| fast | `0x14` | `0x00` | `20` |
+| fastest | `0x0a` | `0x00` | `10` |
+
+**scale 2:** spectrum wave, marquee, covering marquee, rainbow flow, rainbow pulse
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x5e` | `0x01` | `350` |
+| slow | `0x2c` | `0x01` | `300` |
+| normal | `0xfa` | `0x00` | `250` |
+| fast | `0x96` | `0x00` | `150` |
+| fastest | `0x50` | `0x00` | `80` |
+
+**scale 3:** alternating
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x40` | `0x06` | `1600` |
+| slow | `0x14` | `0x05` | `1300` |
+| normal | `0xe8` | `0x03` | `1000` |
+| fast | `0x20` | `0x03` | `800` |
+| fastest | `0x58` | `0x02` | `600` |
+
+**scale 4:** alternating moving
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x20` | `0x03` | `800` |
+| slow | `0xbc` | `0x02` | `700` |
+| normal | `0xf4` | `0x01` | `500` |
+| fast | `0x90` | `0x01` | `400` |
+| fastest | `0x2c` | `0x01` | `300` |
+
+**scale 5:** pulse, starry night
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x19` | `0x00` | `25` |
+| slow | `0x14` | `0x00` | `20` |
+| normal | `0x0f` | `0x00` | `15` |
+| fast | `0x07` | `0x00` | `7` |
+| fastest | `0x04` | `0x00` | `4` |
+
+**scale 6:** breathing, water cooler
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x28` | `0x00` | `40` |
+| slow | `0x1e` | `0x00` | `30` |
+| normal | `0x14` | `0x00` | `20` |
+| fast | `0x0a` | `0x00` | `10` |
+| fastest | `0x04` | `0x00` | `4` |
+
+**scale 7:** tai chi
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x32` | `0x00` | `50` |
+| slow | `0x28` | `0x00` | `40` |
+| normal | `0x1e` | `0x00` | `30` |
+| fast | `0x14` | `0x00` | `20` |
+| fastest | `0x0a` | `0x00` | `10` |
+
+**scale 8:** loading
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest | - | - |  |
+| slow | - | - |  |
+| normal | `0x14` | `0x00` | `20` |
+| fast | - | - |  |
+| fastest | - | - |  |
+
+**scale 9:** super-fixed
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest | - | - |  |
+| slow | - | - |  |
+| normal | `0x00` | `0x00` | `0` |
+| fast | - | - |  |
+| fastest | - | - |  |
+
+**scale 10:** super-breathing
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x37` | `0x00` | `55` |
+| slow | `0x28` | `0x00` | `40` |
+| normal | `0x19` | `0x00` | `25` |
+| fast | `0x0a` | `0x00` | `10` |
+| fastest | `0x00` | `0x00` | `0` |
+
+**scale 11:** wings
+| speed | `data[5]` | `data[6]` | base10 |
+| :--- | :---: | :---: | :---: |
+| slowest |`0x6e` | `0x00` | `110` |
+| slow | `0x53` | `0x00` | `83` |
+| normal | `0x39` | `0x00` | `57` |
+| fast | `0x2e` | `0x00` | `46` |
+| fastest | `0x20` | `0x00` | `32` |
