@@ -5,7 +5,12 @@ NZXT Kraken X53
 NZXT Kraken X63
 NZXT Kraken X73
 
-**See also: NZXT Kraken X73/01 - tomaculum/README**
+Relevant files
+--------------
+
+Detailed information by @tomaculum: NZXT Kraken X73/01 - tomaculum/README
+Analysis of some captured data (outdated): NZXT Kraken X63/input-analysis.ods
+Captures files and USB descriptors: NZXT Kraken X*3/**
 
 General notes
 -------------
@@ -58,5 +63,3 @@ appears similar to HUE 2 devices:
 +-- initialize 1/2 (send hex 700201b80b + nulls)
 +-- initialize 2/2 (send hex 7001 + nulls)
 +-- read until and parse firmware (0x11) and led (0x21) info responses
-
-**See also: NZXT Kraken X73/01 - tomaculum/README**
