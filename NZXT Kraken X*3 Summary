@@ -17,13 +17,23 @@ General notes
 
 vendor := 0x1e71 (NZXT)
 product := 0x2007 (shared between X53, X63 and X73)
-bcdDevice := 2.01 (maybe firmware version?)
+bcdDevice := 2.01 (not the firmware)
 bNumConfigurations := 1
 
 interface 0:
 +-- hid
 +-- ep 1 in, int, 64 bytes (probably for status in)
 +-- ep 1 out, int, 64 bytes (probably for lighting and cooling out)
+
+Known bcdDevice revisions
+-------------------------
+
+As of April 2020:
+
+bcdDevice, firmware = [
+	(2.00, firmware 1.8.0)  # NZXT Kraken X53/03*/README
+	(2.01, firmware 2.1.0)
+]
 
 Incomming reports
 -----------------
