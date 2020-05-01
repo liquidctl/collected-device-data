@@ -1,0 +1,9 @@
+kraken device: X53
+CAM version: 4.6.0
+firmware version: 2.1
+cooling mode: silent
+logo lighting mode: fixed
+logo colors: #FFFFFF
+ring lighting mode: fixed
+ring colors: #FFFFFF
+usb device address: 1.9.1
