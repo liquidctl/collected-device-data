@@ -55,7 +55,7 @@ use of packet error checking := no (apparently)
 
 status fields (first guesses):
 +-- only if buf[0] == 0x75
-+-- coolant temperature := buf[0x0f] + buf[0x0e]/10
++-- coolant temperature := buf[0x0f] + buf[0x10]/10
 +-- pump speed := buf[0x12] << 8 | buf[0x11]
 
 firmware info fields (first guesses):
