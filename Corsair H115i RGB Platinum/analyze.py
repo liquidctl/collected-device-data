@@ -22,7 +22,7 @@ DIR_OUT = 'out'
 
 def parse_inc(msg):
     # found by analyzing how each byte varies over time (see _data_in.ods)
-    coolant = msg[8] + msg[7] / 256
+    coolant = msg[8] + msg[7] / 255
     print(f'  coolant: {coolant:.1f}°C')
     for name, base in [('fan1', 14), ('fan2', 21), ('pump', 28)]:
         duty = msg[base] / 255  # TODO check
