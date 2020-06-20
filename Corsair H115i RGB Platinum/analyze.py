@@ -24,7 +24,7 @@ def parse_inc(msg):
     # found by analyzing how each byte varies over time (see _data_in.ods)
     coolant = msg[8] + msg[7] / 255
     print(f'  coolant: {coolant:.1f}°C')
-    for name, base in [('fan1', 14), ('fan2', 21), ('pump', 28)]:
+    for name, base in [('fan1', 14), ('fan2', 21), ('pump', 28), ('fan3', 42)]:
         duty = msg[base] / 255  # TODO check
         rpm = int.from_bytes(msg[base + 1:base + 3], byteorder='little')
         print(f'  {name}: {duty:.0%}, {rpm} rpm')
@@ -71,7 +71,8 @@ def parse_out(msg):
     elif cmd == 0b000 and msg[2] == 0xff:
         print(f'  cmd: get status')
     else:
-        raise ValueError(f'Unknown command: {cmd:03b}')
+        print(f'  cmd: unknown {cmd:03b}')
+        # raise ValueError(f'Unknown command: {cmd:03b}')
 
 
 if __name__ == '__main__':

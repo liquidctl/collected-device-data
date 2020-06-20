@@ -1,0 +1,11 @@
+Provided-by: @lyarbean
+Provided-at: 2020-06-20
+Source: https://github.com/jonasmalacofilho/liquidctl/files/4807645/h150iPROXT_vbox_icue_fans_lighting.pcapng.gz
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/138#issuecomment-646968657
+
+---
+
+Consider using ../../Corsair\ H115i\ RGB\ Platinum/analyze.py on this capture.  Before that, export it to JSON.
+
+    tshark -r h150iPROXT_vbox_icue_fans_lighting.pcapng -T json > h150iPROXT_vbox_icue_fans_lighting.json
+    ../../Corsair\ H115i\ RGB\ Platinum/analyze.py --show-bytes=all h150iPROXT_vbox_icue_fans_lighting.json
