@@ -1,0 +1,17 @@
+Provided-by: @sgtsixpack
+Provided-at: 2020-06-08
+Source (1/3): https://www.dosyaupload.com/byjJ
+Source (2/3): https://www.dosyaupload.com/byjL
+Source (3/3): https://www.dosyaupload.com/7md7
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/127#issuecomment-640979944
+
+---
+
+From sgtsixpack's comment:
+
+> Uploaded pcapng (fixed):
+> https://www.dosyaupload.com/byjJ
+> Uploaded same sensor when using digital c (data was constant stream instead of periodic) on DLED1 (as per CaseySJ picture).
+> https://www.dosyaupload.com/byjL
+> 
+> I was reading your procedure of starting wireshark, then RGBfusion and waiting for an update and then stopping RGBfusion. RGBfusion is set to fixed on all chanels with a colour F35B1
