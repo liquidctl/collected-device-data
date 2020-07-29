@@ -1,0 +1,36 @@
+Provided-by: @haringsrob
+Provided-at: 2020-07-24
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/151#issuecomment-663701091
+
+$ sudo usbhid-dump -d 048d:8297
+003:002:000:DESCRIPTOR         1595619527.478157
+ 06 89 FF 09 10 A1 01 85 5A 09 01 15 00 26 FF 00
+ 75 08 95 10 B1 00 C0 06 89 FF 09 CC A1 01 85 CC
+ 09 01 15 00 26 FF 00 75 08 95 3F B1 00 C0
+
+Decodes to (with http://eleccelerator.com/usbdescreqparser/):
+
+0x06, 0x89, 0xFF,  // Usage Page (Vendor Defined 0xFF89)
+0x09, 0x10,        // Usage (0x10)
+0xA1, 0x01,        // Collection (Application)
+0x85, 0x5A,        //   Report ID (90)
+0x09, 0x01,        //   Usage (0x01)
+0x15, 0x00,        //   Logical Minimum (0)
+0x26, 0xFF, 0x00,  //   Logical Maximum (255)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x10,        //   Report Count (16)
+0xB1, 0x00,        //   Feature (Data,Array,Abs,No Wrap,Linear,Preferred State,No Null Position,Non-volatile)
+0xC0,              // End Collection
+0x06, 0x89, 0xFF,  // Usage Page (Vendor Defined 0xFF89)
+0x09, 0xCC,        // Usage (0xCC)
+0xA1, 0x01,        // Collection (Application)
+0x85, 0xCC,        //   Report ID (-52)
+0x09, 0x01,        //   Usage (0x01)
+0x15, 0x00,        //   Logical Minimum (0)
+0x26, 0xFF, 0x00,  //   Logical Maximum (255)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x3F,        //   Report Count (63)
+0xB1, 0x00,        //   Feature (Data,Array,Abs,No Wrap,Linear,Preferred State,No Null Position,Non-volatile)
+0xC0,              // End Collection
+
+// 46 bytes
