@@ -1,0 +1,10 @@
+Provided-by: @sam-brett
+Provided-at: 2020-07-30
+Source: https://github.com/jonasmalacofilho/liquidctl/files/5001961/Archive.zip
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/154#issuecomment-666421736
+
+---
+
+Use device filter:
+
+    usb.darwin.device_address == 22
