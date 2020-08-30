@@ -1,0 +1,24 @@
+Provided-by: @markusmoormann
+Provided-at: 2020-08-28
+Source: https://github.com/jonasmalacofilho/liquidctl/files/5140195/wireshark.zip
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/173#issuecomment-682335441
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/173#issuecomment-674668310
+
+---
+
+liquidctl initialize
+liquidctl set fan speed  20 0  25 10  30 50  40 90  50 100
+liquidctl set led color off
+liquidctl set led color fixed ff8000
+liquidctl set led color off
+liquidctl set fan speed  100
+liquidctl status
+liquidctl status
+liquidctl status
+liquidctl status
+liquidctl set fan speed  20 0  25 10  30 50  40 90  50 100
+liquidctl status
+liquidctl set led color fixed "hsv(90,85,70)"
+liquidctl set led color fixed "rgb(255, 127, 63)"
+liquidctl set led color fading "hsv(0,80,100)" "hsv(180,80,100)"
+liquidctl set led color off
