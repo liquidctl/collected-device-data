@@ -1,0 +1,66 @@
+Provided-at: 2020-09-13
+Source: https://github.com/jonasmalacofilho/liquidctl/issues/182#issuecomment-691671356
+
+---
+
+```
+$ usbhid-dump -a 1:4
+001:004:000:DESCRIPTOR         1600002923.244703
+ 06 00 FF 09 01 A1 01 85 01 09 01 15 00 26 FF 00
+ 75 08 95 01 B1 82 85 01 09 01 91 82 85 02 09 02
+ 15 00 26 FF 00 75 08 95 40 B1 82 85 02 09 02 91
+ 82 85 03 09 03 15 00 26 FF 00 75 08 95 40 B1 82
+ 85 03 09 03 91 82 85 04 09 04 75 08 95 14 81 82
+ 85 05 09 05 75 08 95 01 81 82 C0
+```
+
+decoded:
+
+```
+0x06, 0x00, 0xFF,  // Usage Page (Vendor Defined 0xFF00)
+0x09, 0x01,        // Usage (0x01)
+0xA1, 0x01,        // Collection (Application)
+0x85, 0x01,        //   Report ID (1)
+0x09, 0x01,        //   Usage (0x01)
+0x15, 0x00,        //   Logical Minimum (0)
+0x26, 0xFF, 0x00,  //   Logical Maximum (255)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x01,        //   Report Count (1)
+0xB1, 0x82,        //   Feature (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Volatile)
+0x85, 0x01,        //   Report ID (1)
+0x09, 0x01,        //   Usage (0x01)
+0x91, 0x82,        //   Output (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Volatile)
+0x85, 0x02,        //   Report ID (2)
+0x09, 0x02,        //   Usage (0x02)
+0x15, 0x00,        //   Logical Minimum (0)
+0x26, 0xFF, 0x00,  //   Logical Maximum (255)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x40,        //   Report Count (64)
+0xB1, 0x82,        //   Feature (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Volatile)
+0x85, 0x02,        //   Report ID (2)
+0x09, 0x02,        //   Usage (0x02)
+0x91, 0x82,        //   Output (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Volatile)
+0x85, 0x03,        //   Report ID (3)
+0x09, 0x03,        //   Usage (0x03)
+0x15, 0x00,        //   Logical Minimum (0)
+0x26, 0xFF, 0x00,  //   Logical Maximum (255)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x40,        //   Report Count (64)
+0xB1, 0x82,        //   Feature (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Volatile)
+0x85, 0x03,        //   Report ID (3)
+0x09, 0x03,        //   Usage (0x03)
+0x91, 0x82,        //   Output (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Volatile)
+0x85, 0x04,        //   Report ID (4)
+0x09, 0x04,        //   Usage (0x04)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x14,        //   Report Count (20)
+0x81, 0x82,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+0x85, 0x05,        //   Report ID (5)
+0x09, 0x05,        //   Usage (0x05)
+0x75, 0x08,        //   Report Size (8)
+0x95, 0x01,        //   Report Count (1)
+0x81, 0x82,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+0xC0,              // End Collection
+
+// 91 bytes
+```
