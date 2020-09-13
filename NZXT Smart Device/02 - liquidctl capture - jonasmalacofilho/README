@@ -1,0 +1,17 @@
+Provided-at: 2020-09-13
+
+---
+
+This capture shows traffic between the device and the Windows/Linux kernels,
+liquidctl, and (my) grdp3 kernel module (on Linux).  This does *not* show the
+initialization procedure performed by CAM.  Check packet comments for specific
+actions performed at each point in time.
+
+The objective was to investigate liquidctl issue 182 ("OSError: open failed on
+NZXT Smart Device (V1) on my hackintosh").[1]
+
+Specifically, I was looking into what could explain why an uninitialized
+`status` on Windows would be enough to make the device work on Mac OS.[2]
+
+[1] https://github.com/jonasmalacofilho/liquidctl/issues/182
+[2] https://github.com/jonasmalacofilho/liquidctl/issues/182#issuecomment-689288911
