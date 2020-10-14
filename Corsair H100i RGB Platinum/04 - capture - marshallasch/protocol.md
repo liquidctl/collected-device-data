@@ -135,3 +135,17 @@ All messages have the same response format.
 | 0       |  1  | 2          | 3          | 4   | 5           | 6           | 7           | 8          |  9...14 | 15 | 16 | 17...21 | 22 | 23 | 24...28 | 29 | 30 | 31...62 |  63  |
 | ------- | --- | ---------- | ---------- | --- | ----------- | ----------- | ----------- | ---------- | ----- | ----- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | _PREFIX | SEQ | FIRMWARE_1 | FIRMWARE_2 | 00  | COUNTER_LSB | COUNTER_MSB | liquid temp | liquid temp | XX    | Fan1 speed | fan1 speed | XX | fan2 speed | fan2 speed | XX | pump speed | pump speed | XX | CHECK |  
+
+
+
+# Special restart command
+
+This is a special command that can be sent to reset the device and any settings that have been set seem to be rest.
+
+the message has a payload of `REBOOT`
+
+| 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7...62 | 63    |
+| --- | --- | --- | --- | --- | --- | --- | ------ | ----- |
+| 00  |  52 | 45  | 42  | 4f  | 4f  | 54  | 00     | CHECK |
+
+
