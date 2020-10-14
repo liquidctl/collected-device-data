@@ -1,5 +1,7 @@
-# Breakdown of known communication protocol for the Corsair H100i Platinum AIO cooler
+# Notes on the Hydro Platinum protocol by Marshall Asch
 
+Last updated: October 13, 2020
+Tested using firmware version: 1.1.15
 
 General types of commands
 - set fan speeds and pump speed
