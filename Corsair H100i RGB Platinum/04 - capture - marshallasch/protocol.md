@@ -25,7 +25,9 @@ Byte fields start at position 0.
 | _LIGHT_2 | `0b101` | The second sequence of setting the LED values |
 | _LIGHT_3 | `0b110` | The third sequence of setting the LED values |
 | PROFILE_LEN | `0x07` | The number of (temp, fan) speed pairs in a fan curve |
-
+| _ENABLE_1 | `0b001` | The first sequence |
+| _ENABLE_2 | `0b010` | The second sequence |
+| _ENABLE_3 | `0b011` | The third sequence |
 #####  Sequence number
 
 The sequence number is a one byte value that is based on an incrementing number in the range of `[1, 31]`. However, instead of using this value directly it is shifted to the left by 3 bits and sometimes masked with a command operator.
@@ -106,11 +108,6 @@ The values for `FAN[12]_MODE` are:
 #### magic packet to be able to set the RGB LEDs
 
 The exact purpose of this message is unknown but sending this payload allows the set LED commands to function properly. Some of the fields are different in some messages but the differences seem small and unimportant.
-
-| _ENABLE_1 | `0b001` | The first sequence |
-| _ENABLE_2 | `0b010` | The second sequence |
-| _ENABLE_3 | `0b011` | The third sequence |
-
 
 
 | 0       |        1            | 2 .... 62 |  63  |
