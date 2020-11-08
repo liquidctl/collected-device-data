@@ -13,7 +13,7 @@ The Image upload tool under Windows doesn't apply any sanity checks or conversio
 
 ### lsusb output
 ```    
-Bus 005 Device 003: ID 04d9:a231 Holtek Semiconductor, Inc. USB2.1 Hub
+Bus 001 Device 002: ID 1044:7a46 Chu Yuen Enterprise Co., Ltd USB-MASS STORAGE
 Device Descriptor:
   bLength                18
   bDescriptorType         1
@@ -22,54 +22,53 @@ Device Descriptor:
   bDeviceSubClass         0 
   bDeviceProtocol         0 
   bMaxPacketSize0        64
-  idVendor           0x04d9 Holtek Semiconductor, Inc.
-  idProduct          0xa231 
-  bcdDevice            1.01
+  idVendor           0x1044 Chu Yuen Enterprise Co., Ltd
+  idProduct          0x7a46 
+  bcdDevice            1.00
   iManufacturer           1 HOLTEK
-  iProduct                2 USB-HID Keyboard
-  iSerial                 0 
+  iProduct                2 USB-MASS STORAGE
+  iSerial                 3 000000000001
   bNumConfigurations      1
   Configuration Descriptor:
     bLength                 9
     bDescriptorType         2
-    wTotalLength       0x007b
-    bNumInterfaces          4
+    wTotalLength       0x0040
+    bNumInterfaces          2
     bConfigurationValue     1
     iConfiguration          0 
-    bmAttributes         0xa0
+    bmAttributes         0x80
       (Bus Powered)
-      Remote Wakeup
-    MaxPower              500mA
+    MaxPower              100mA
     Interface Descriptor:
       bLength                 9
       bDescriptorType         4
       bInterfaceNumber        0
       bAlternateSetting       0
-      bNumEndpoints           1
-      bInterfaceClass         3 Human Interface Device
-      bInterfaceSubClass      1 Boot Interface Subclass
-      bInterfaceProtocol      1 Keyboard
+      bNumEndpoints           2
+      bInterfaceClass         8 Mass Storage
+      bInterfaceSubClass      6 SCSI
+      bInterfaceProtocol     80 Bulk-Only
       iInterface              0 
-        HID Device Descriptor:
-          bLength                 9
-          bDescriptorType        33
-          bcdHID               1.11
-          bCountryCode            0 Not supported
-          bNumDescriptors         1
-          bDescriptorType        34 Report
-          wDescriptorLength      59
-         Report Descriptors: 
-           ** UNAVAILABLE **
       Endpoint Descriptor:
         bLength                 7
         bDescriptorType         5
         bEndpointAddress     0x81  EP 1 IN
-        bmAttributes            3
-          Transfer Type            Interrupt
+        bmAttributes            2
+          Transfer Type            Bulk
           Synch Type               None
           Usage Type               Data
-        wMaxPacketSize     0x0008  1x 8 bytes
-        bInterval               1
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               0
     Interface Descriptor:
       bLength                 9
       bDescriptorType         4
@@ -83,11 +82,11 @@ Device Descriptor:
         HID Device Descriptor:
           bLength                 9
           bDescriptorType        33
-          bcdHID               1.11
-          bCountryCode            0 Not supported
+          bcdHID               1.10
+          bCountryCode           33 US
           bNumDescriptors         1
           bDescriptorType        34 Report
-          wDescriptorLength      34
+          wDescriptorLength      47
          Report Descriptors: 
            ** UNAVAILABLE **
       Endpoint Descriptor:
@@ -104,76 +103,6 @@ Device Descriptor:
         bLength                 7
         bDescriptorType         5
         bEndpointAddress     0x04  EP 4 OUT
-        bmAttributes            3
-          Transfer Type            Interrupt
-          Synch Type               None
-          Usage Type               Data
-        wMaxPacketSize     0x0040  1x 64 bytes
-        bInterval               1
-    Interface Descriptor:
-      bLength                 9
-      bDescriptorType         4
-      bInterfaceNumber        2
-      bAlternateSetting       0
-      bNumEndpoints           1
-      bInterfaceClass         3 Human Interface Device
-      bInterfaceSubClass      0 
-      bInterfaceProtocol      0 
-      iInterface              0 
-        HID Device Descriptor:
-          bLength                 9
-          bDescriptorType        33
-          bcdHID               1.11
-          bCountryCode            0 Not supported
-          bNumDescriptors         1
-          bDescriptorType        34 Report
-          wDescriptorLength     181
-         Report Descriptors: 
-           ** UNAVAILABLE **
-      Endpoint Descriptor:
-        bLength                 7
-        bDescriptorType         5
-        bEndpointAddress     0x82  EP 2 IN
-        bmAttributes            3
-          Transfer Type            Interrupt
-          Synch Type               None
-          Usage Type               Data
-        wMaxPacketSize     0x0040  1x 64 bytes
-        bInterval               1
-    Interface Descriptor:
-      bLength                 9
-      bDescriptorType         4
-      bInterfaceNumber        3
-      bAlternateSetting       0
-      bNumEndpoints           2
-      bInterfaceClass         3 Human Interface Device
-      bInterfaceSubClass      0 
-      bInterfaceProtocol      0 
-      iInterface              0 
-        HID Device Descriptor:
-          bLength                 9
-          bDescriptorType        33
-          bcdHID               1.11
-          bCountryCode            0 Not supported
-          bNumDescriptors         1
-          bDescriptorType        34 Report
-          wDescriptorLength      31
-         Report Descriptors: 
-           ** UNAVAILABLE **
-      Endpoint Descriptor:
-        bLength                 7
-        bDescriptorType         5
-        bEndpointAddress     0x85  EP 5 IN
-        bmAttributes            3
-          Transfer Type            Interrupt
-          Synch Type               None
-          Usage Type               Data
-        wMaxPacketSize     0x0040  1x 64 bytes
-        bInterval               1
-      Endpoint Descriptor:
-        bLength                 7
-        bDescriptorType         5
-        bEndpointAddress     0x06  EP 6 OUT
         bmAttributes            3
           Transfer Type            Interrupt
           Synch Type               None
