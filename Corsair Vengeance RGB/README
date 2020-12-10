@@ -1,0 +1,16 @@
+Because CorsairLink and iCue acquire kernel locks on the relevant I²C devices,
+capturing the traffic from/to those devices with software tools is severely
+limited.
+
+Fortunately, connecting a logic analyzer to the SCL and SDA pins of a memory
+slot (directly or through the use of some dummy module) is a cheap and
+effective alternative.
+
+---
+
+Files: clink_*.[sr,pvs] hwinfo_*.[sr,pvs]
+Provided by: @jonasmalacofilho
+Provided at: 2020-12-09
+
+SMBus/I²C captures using hardware probes of temperature monitoring
+(CorsairLink; HWiNFO) and RGB control (CorsairLink).
