@@ -32,24 +32,26 @@ def parse_inc(msg):
     print(f'  firmware: {msg[2] >> 4}.{msg[2] & 0xf}.{msg[3]}')
 
 
-def parse_fanctl(fan_no, msg):
+def parse_fanctl(fan_no, msg, fan_name_no=None):
+    if fan_name_no is None:
+        fan_name_no = fan_no
     base = 0xb + fan_no * 6
     cbase = 0x1e + fan_no * 14
     fan_mode = ['custom', 'external', 'fixed_duty', None, 'fixed_rpm'][msg[base]]
     if fan_mode == 'custom':
         temps = msg[cbase:(cbase + 14):2]
         duties = map(lambda x: f'{x / 255:.0%}', msg[cbase + 1:(cbase + 14):2])  # TODO check
-        print(f'  fan{fan_no} mode := {fan_mode}, (temperature,duty) := {list(zip(temps, duties))}')
+        print(f'  fan{fan_name_no} mode := {fan_mode}, (temperature,duty) := {list(zip(temps, duties))}')
     elif fan_mode == 'external':
-        print(f'  fan{fan_no} mode := {fan_mode}, do not know how to parse details')
+        print(f'  fan{fan_name_no} mode := {fan_mode}, do not know how to parse details')
     elif fan_mode == 'fixed_duty':
         duty = msg[base + 5] / 255  # TODO check
-        print(f'  fan{fan_no} mode := {fan_mode} with duty := {duty:.0%}')
+        print(f'  fan{fan_name_no} mode := {fan_mode} with duty := {duty:.0%}')
     elif fan_mode == 'fixed_rpm':
         rpm = int.from_bytes(msg[base + 1:base + 3], byteorder='little')
-        print(f'  fan{fan_no} mode := {fan_mode} with rpm := {rpm} rpm')
+        print(f'  fan{fan_name_no} mode := {fan_mode} with rpm := {rpm} rpm')
     else:
-        raise ValueError(f'Unknown fan{fan_no} mode: {msg[base]}')
+        raise ValueError(f'Unknown fan{fan_name_no} mode: {msg[base]}')
 
 
 def parse_out(msg):
@@ -68,6 +70,9 @@ def parse_out(msg):
             parse_fanctl(no, msg)
         pump_mode = ['quiet', 'balanced', 'extreme'][msg[23]]  # TODO check
         print(f'  pump mode := {pump_mode}')
+    elif cmd == 0b011 and msg[2] == 0x14:
+        print(f'  cmd: set cooling (extra)')
+        parse_fanctl(0, msg, fan_name_no=2)
     elif cmd == 0b000 and msg[2] == 0xff:
         print(f'  cmd: get status')
     else:
