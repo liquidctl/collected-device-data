@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+
+"""
+Interpolate a quadratic input power curve from standard test data.
+
+Test data should be supplied for the standard 10%–20%–50%–100% load levels.
+
+Outputs the `a`, `b` and `c` parameters for the curve `y(x) = a·x² + b·x + c`,
+where `y(x)` is the input power, normalized by the rated output power, at load
+level `x`.
+
+Usage:
+    interpolate [options] <@10%> <@20%> <@50%> <@100%>
+
+Options:
+    --graph  Plot the resulting input power and efficiency models
+
+Example:
+    $ interpolate .8634 .9063 .9149 .8828
+    0.10635999086221673 1.0127441767474328 0.013639590671195795
+
+Copyright (C) 2021  Jonas Malaco
+SPDX-License-Identifier: GPL-3.0-or-later
+"""
+
+import sys
+
+from docopt import docopt
+from numpy import array, arange
+from scipy.optimize import leastsq
+
+
+if __name__ == '__main__':
+    args = docopt(__doc__)
+
+    # instead of trying to fit the efficiency curve, compute the (normalized)
+    # input power curve and fit that
+
+    load = array([.1, .2, .5, 1.])  # standard test points for 80plus
+    efficiency = array([float(args[f'<@{int(xi * 100)}%>']) for xi in load])
+
+    input_power = load / efficiency  # normalized by rated output power
+
+    def quadratic(params, x):
+        a, b, c = params[0], params[1], params[2]
+        return a * x**2 + b * x + c
+
+    def quadratic_residual(params, x, y):
+        return y - quadratic(params, x)
+
+    guess = [0, 1, 0]
+    result = leastsq(quadratic_residual, guess, (load, input_power))
+
+    a, b, c = result[0][0], result[0][1], result[0][2]
+    print(a, b, c)
+
+    if args['--graph']:
+        import matplotlib.pyplot as plt
+
+        lnew = arange(0, 1.01, 0.01)
+        pnew = quadratic([a, b, c], lnew)
+        enew = lnew / pnew
+
+        fig, (ax0, ax1) = plt.subplots(nrows=2)
+
+        ax0.plot(lnew, pnew, color="orange", label="input/rated power")
+        ax0.set_title('Input power (normalized by rated output power)')
+        ax0.grid(True)
+        ax0.set_xlabel('load level of rated output power')
+
+        ax1.plot(load, efficiency, 'bo', label="efficiency (data)")
+        ax1.plot(lnew, enew, color="purple", label="efficiency (model)")
+        ax1.set_title('Efficiency')
+        ax1.grid(True)
+        ax1.set_xlabel('load level of rated output power')
+
+        fig.subplots_adjust(hspace=.6)
+        plt.show()
