@@ -6,18 +6,23 @@ Interpolate a quadratic input power curve from standard test data.
 Test data should be supplied for the standard 10%–20%–50%–100% load levels.
 
 Outputs the `a`, `b` and `c` parameters for the curve `y(x) = a·x² + b·x + c`,
-where `y(x)` is the input power, normalized by the rated output power, at load
-level `x`.
+where `y(x)` is the input power at `x` output power.
+
+By default, `x` and `y(x)` are made to be normalized by the rated output power.
+Supplying `--rated <power>` changes the computation to absolute mode.
 
 Usage:
     interpolate [options] <@10%> <@20%> <@50%> <@100%>
 
 Options:
-    --graph  Plot the resulting input power and efficiency models
+    --rated <power>  Compute an absolute input over output power curve
+    --graph          Plot the resulting input power and efficiency models
 
 Example:
     $ interpolate .8634 .9063 .9149 .8828
     0.10635999086221673 1.0127441767474328 0.013639590671195795
+    $ interpolate --rated 1000 .8634 .9063 .9149 .8828
+    0.00010635999101514012 1.0127441765883562 13.639590689877332
 
 Copyright (C) 2021  Jonas Malaco
 SPDX-License-Identifier: GPL-3.0-or-later
@@ -36,9 +41,14 @@ if __name__ == '__main__':
     # instead of trying to fit the efficiency curve, compute the (normalized)
     # input power curve and fit that
 
-    load = array([.1, .2, .5, 1.])  # standard test points for 80plus
-    efficiency = array([float(args[f'<@{int(xi * 100)}%>']) for xi in load])
+    test_points = array([.1, .2, .5, 1.])
+    rated_power = 1  # by default input and output are normalized
 
+    if args['--rated']:
+        rated_power = float(args['--rated'])
+
+    load = test_points * rated_power
+    efficiency = array([float(args[f'<@{int(xi * 100)}%>']) for xi in test_points])
     input_power = load / efficiency  # normalized by rated output power
 
     def quadratic(params, x):
@@ -57,22 +67,28 @@ if __name__ == '__main__':
     if args['--graph']:
         import matplotlib.pyplot as plt
 
-        lnew = arange(0, 1.01, 0.01)
+        lnew = arange(0, 1.01, 0.01) * rated_power
         pnew = quadratic([a, b, c], lnew)
         enew = lnew / pnew
 
         fig, (ax0, ax1) = plt.subplots(nrows=2)
 
-        ax0.plot(lnew, pnew, color="orange", label="input/rated power")
-        ax0.set_title('Input power (normalized by rated output power)')
+        ax0.plot(lnew, pnew, color="orange", label="input power")
         ax0.grid(True)
-        ax0.set_xlabel('load level of rated output power')
 
         ax1.plot(load, efficiency, 'bo', label="efficiency (data)")
         ax1.plot(lnew, enew, color="purple", label="efficiency (model)")
         ax1.set_title('Efficiency')
         ax1.grid(True)
-        ax1.set_xlabel('load level of rated output power')
+
+        if args['--rated']:
+            ax0.set_title('Input power (W)')
+            ax0.set_xlabel('Output power (W)')
+            ax1.set_xlabel('Output power (W)')
+        else:
+            ax0.set_title('Input power (normalized by rated output power)')
+            ax0.set_xlabel('Load level of rated output power')
+            ax1.set_xlabel('Load level of rated output power')
 
         fig.subplots_adjust(hspace=.6)
         plt.show()
