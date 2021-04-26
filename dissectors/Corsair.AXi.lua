@@ -66,10 +66,3 @@ end
 
 -- Register the dissector
 DissectorTable.get("usb.bulk"):add(0xff, p)
-
---[[
-  Some references for writing Wireshark dissectors using Lua:
-
-  - https://mika-s.github.io/wireshark/lua/dissector/usb/2019/07/23/creating-a-wireshark-usb-dissector-in-lua-1.html
-  - https://mika-s.github.io/wireshark/lua/dissector/2017/11/04/creating-a-wireshark-dissector-in-lua-1.html
-]]
