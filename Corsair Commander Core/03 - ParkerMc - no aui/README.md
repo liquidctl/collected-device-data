@@ -1,5 +1,4 @@
-# 01 - Boot to Shutdown
-Taken with the commander core with the Corsair H100i Elite Capellix AIO.
+# 03 - No AIO
 Port 1-2 have ML Fans and their respective RGB cables.
 Ports 3-6 are not used.
 
