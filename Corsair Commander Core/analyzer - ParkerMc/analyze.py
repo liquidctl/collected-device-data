@@ -10,7 +10,6 @@ Usage:
 Options:
   -h --help         Show this screen.
 
-  --hide-out        Hides output data
   --hide-in         Hides input data
 """
 
@@ -135,7 +134,6 @@ if __name__ == '__main__':
     args = docopt(__doc__)
 
     hide_in = args['--hide-in']
-    hide_out = args['--hide-out']
 
     with open(args['<path>'], 'r') as f:
         capture = json.load(f)
