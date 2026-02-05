@@ -1,0 +1,154 @@
+No.     Time           Source                Destination           Protocol Length Info
+      8 0.000000       4.2.0                 host                  USB      46     GET DESCRIPTOR Response DEVICE
+
+Frame 8: Packet, 46 bytes on wire (368 bits), 46 bytes captured (368 bits) on interface \\.\USBPcap4, id 0
+    Section number: 1
+    Interface id: 0 (\\.\USBPcap4)
+        Interface name: \\.\USBPcap4
+        Interface description: USBPcap4
+    Encapsulation type: USB packets with USBPcap header (152)
+    Arrival Time: Feb  5, 2026 01:54:33.554350000 Eastern Standard Time
+    UTC Arrival Time: Feb  5, 2026 06:54:33.554350000 UTC
+    Epoch Arrival Time: 1770274473.554350000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 0.000000000 seconds]
+    [Time since reference or first frame: 0.000000000 seconds]
+    Frame Number: 8
+    Frame Length: 46 bytes (368 bits)
+    Capture Length: 46 bytes (368 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: usb]
+    Character encoding: ASCII (0)
+USB URB
+    [Source: 4.2.0]
+    [Destination: host]
+    USBPcap pseudoheader length: 28
+    IRP ID: 0x0000000000000000
+    IRP USBD_STATUS: USBD_STATUS_SUCCESS (0x00000000)
+    URB Function: URB_FUNCTION_CONTROL_TRANSFER (0x0008)
+    IRP information: 0x01, Direction: PDO -> FDO
+        0000 000. = Reserved: 0x00
+        .... ...1 = Direction: PDO -> FDO (0x1)
+    URB bus id: 4
+    Device address: 2
+    Endpoint: 0x80, Direction: IN
+        1... .... = Direction: IN (1)
+        .... 0000 = Endpoint number: 0
+    URB transfer type: URB_CONTROL (0x02)
+    Packet Data Length: 18
+    [Request in: 7]
+    [Time from request: 0.000000000 seconds]
+    Control transfer stage: Complete (3)
+DEVICE DESCRIPTOR
+    bLength: 18
+    bDescriptorType: 0x01 (DEVICE)
+    bcdUSB: 0x0200
+    bDeviceClass: Device (0x00)
+    bDeviceSubClass: 0
+    bDeviceProtocol: 0 (Use class code info from Interface Descriptors)
+    bMaxPacketSize0: 64
+    idVendor: ASUSTek Computer, Inc. (0x0b05)
+    idProduct: Unknown (0x19af)
+    bcdDevice: 0x0100
+    iManufacturer: 1
+    iProduct: 2
+    iSerialNumber: 3
+    bNumConfigurations: 1
+
+No.     Time           Source                Destination           Protocol Length Info
+     10 0.000000       4.2.0                 host                  USB      71     GET DESCRIPTOR Response CONFIGURATION
+
+Frame 10: Packet, 71 bytes on wire (568 bits), 71 bytes captured (568 bits) on interface \\.\USBPcap4, id 0
+    Section number: 1
+    Interface id: 0 (\\.\USBPcap4)
+        Interface name: \\.\USBPcap4
+        Interface description: USBPcap4
+    Encapsulation type: USB packets with USBPcap header (152)
+    Arrival Time: Feb  5, 2026 01:54:33.554350000 Eastern Standard Time
+    UTC Arrival Time: Feb  5, 2026 06:54:33.554350000 UTC
+    Epoch Arrival Time: 1770274473.554350000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 0.000000000 seconds]
+    [Time since reference or first frame: 0.000000000 seconds]
+    Frame Number: 10
+    Frame Length: 71 bytes (568 bits)
+    Capture Length: 71 bytes (568 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: usb:usbhid]
+    Character encoding: ASCII (0)
+USB URB
+    [Source: 4.2.0]
+    [Destination: host]
+    USBPcap pseudoheader length: 28
+    IRP ID: 0x0000000000000000
+    IRP USBD_STATUS: USBD_STATUS_SUCCESS (0x00000000)
+    URB Function: URB_FUNCTION_CONTROL_TRANSFER (0x0008)
+    IRP information: 0x01, Direction: PDO -> FDO
+        0000 000. = Reserved: 0x00
+        .... ...1 = Direction: PDO -> FDO (0x1)
+    URB bus id: 4
+    Device address: 2
+    Endpoint: 0x80, Direction: IN
+        1... .... = Direction: IN (1)
+        .... 0000 = Endpoint number: 0
+    URB transfer type: URB_CONTROL (0x02)
+    Packet Data Length: 43
+    [Request in: 9]
+    [Time from request: 0.000000000 seconds]
+    Control transfer stage: Complete (3)
+CONFIGURATION DESCRIPTOR
+    bLength: 9
+    bDescriptorType: 0x02 (CONFIGURATION)
+    wTotalLength: 43
+    bNumInterfaces: 2
+    bConfigurationValue: 1
+    iConfiguration: 0
+    Configuration bmAttributes: 0xa0  NOT SELF-POWERED  REMOTE-WAKEUP
+        1... .... = Must be 1: Must be 1 for USB 1.1 and higher
+        .0.. .... = Self-Powered: This device is powered from the USB bus
+        ..1. .... = Remote Wakeup: This device supports REMOTE WAKEUP
+    bMaxPower: 8  (16mA)
+INTERFACE DESCRIPTOR (0.0): class Vendor Specific
+    bLength: 9
+    bDescriptorType: 0x04 (INTERFACE)
+    bInterfaceNumber: 0
+    bAlternateSetting: 0
+    bNumEndpoints: 0
+    bInterfaceClass: Vendor Specific (0xff)
+    bInterfaceSubClass: 0xff
+    bInterfaceProtocol: 0xff
+    iInterface: 0
+INTERFACE DESCRIPTOR (2.0): class HID
+    bLength: 9
+    bDescriptorType: 0x04 (INTERFACE)
+    bInterfaceNumber: 2
+    bAlternateSetting: 0
+    bNumEndpoints: 1
+    bInterfaceClass: HID (0x03)
+    bInterfaceSubClass: No Subclass (0x00)
+    bInterfaceProtocol: 0x00
+    iInterface: 0
+HID DESCRIPTOR
+    bLength: 9
+    bDescriptorType: 0x21 (HID)
+    bcdHID: 0x0111
+    bCountryCode: Not Supported (0x00)
+    bNumDescriptors: 1
+    bDescriptorType: HID Report (0x22)
+    wDescriptorLength: 36
+ENDPOINT DESCRIPTOR
+    bLength: 7
+    bDescriptorType: 0x05 (ENDPOINT)
+    bEndpointAddress: 0x82  IN  Endpoint:2
+        1... .... = Direction: IN Endpoint
+        .... 0010 = Endpoint Number: 0x2
+    bmAttributes: 0x03
+        .... ..11 = Transfertype: Interrupt-Transfer (0x3)
+    wMaxPacketSize: 32
+        ...0 0... .... .... = Transactions per microframe: 1 (0)
+        .... .000 0010 0000 = Maximum Packet Size: 32
+    bInterval: 4
