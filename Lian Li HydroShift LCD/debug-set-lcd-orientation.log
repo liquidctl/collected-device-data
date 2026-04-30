@@ -1,0 +1,81 @@
+[DEBUG] (cli) (_log_env_infos): script: /usr/lib/python3.14/site-packages/liquidctl/__main__.py
+[DEBUG] (cli) (_log_env_infos): version: 1.17.0.dev6+g42eaf4724.d20260417
+[DEBUG] (cli) (_log_env_infos): platform: Linux-6.19.11-arch1-1-x86_64-with-glibc2.43
+[DEBUG] (cli) (_log_env_infos): python: 3.14.4 (main, Apr  8 2026, 17:48:49) [GCC 15.2.1 20260209]
+[DEBUG] (cli) (_log_env_infos): encoding: UTF-8 current, UTF-8 preferred, utf8_mode 0
+[DEBUG] (cli) (_log_env_infos): with colorlog: 6.10.1
+[DEBUG] (cli) (_log_env_infos): with crcmod: 1.7
+[DEBUG] (cli) (_log_env_infos): with docopt: 0.6.2
+[DEBUG] (cli) (_log_env_infos): with hidapi: 0.15.0
+[DEBUG] (cli) (_log_env_infos): with pyusb: 1.3.1
+[DEBUG] (cli) (_log_env_infos): with pillow: 12.2.0
+[DEBUG] (cli) (_log_env_infos): with libusb-package: version n/a (No package metadata was found for libusb-package)
+[DEBUG] (cli) (_log_env_infos): with winusbcdc: version n/a (No package metadata was found for winusbcdc)
+[DEBUG] (cli) (_log_env_infos): with smbus: 1.1.post2
+[DEBUG] (smbus) (find_devices): searching LinuxI2c
+[DEBUG] (smbus) (find_devices): LinuxI2c drivers: Ddr4Temperature, EvgaPascal, RogTuring, VengeanceRgb
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-3 (AMDGPU DM i2c hw bus 3)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-10 (NVIDIA i2c adapter 3 at 1:00.0)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-1 (AMDGPU DM i2c hw bus 1)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-8 (SMBus PIIX4 adapter port 2 at 0b00)
+[DEBUG] (smbus) (find_devices): I²C adapter: 7-0053 skipped: not a bus or unsupported adapter
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-6 (AMDGPU DM aux hw bus 3)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-13 (NVIDIA i2c adapter 6 at 1:00.0)
+[DEBUG] (smbus) (find_devices): I²C adapter: 7-0051 skipped: not a bus or unsupported adapter
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-4 (AMDGPU DM aux hw bus 1)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-11 (NVIDIA i2c adapter 4 at 1:00.0)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-2 (AMDGPU DM i2c hw bus 2)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-0 (AMDGPU DM i2c hw bus 0)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-9 (SMBus PIIX4 adapter port 1 at 0b20)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-7 (SMBus PIIX4 adapter port 0 at 0b00)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-5 (AMDGPU DM aux hw bus 2)
+[DEBUG] (smbus) (find_devices): I²C adapter: i2c-12 (NVIDIA i2c adapter 5 at 1:00.0)
+[DEBUG] (usb) (find_devices): searching HidapiBus
+[DEBUG] (usb) (find_devices): HidapiBus drivers: Aquacomputer, AsusRyujin, AsusRyuo, AuraLed, CommanderCore, CommanderPro, ControlHub, Coolit, CorsairHidPsu, GA2LCD, H1V2, HydroPlatinum, HydroShiftLCD, Kraken2, KrakenX3, KrakenZ3, LianLiUni, MpgCooler, Nzxt2023RgbController, NzxtEPsu, RgbFusion2, SmartDevice, SmartDevice2, _BaseSmartDevice
+[DEBUG] (usb) (find_devices): HID device: 0db0:0076 (usage_page=0x0001 usage=0x0000)
+[DEBUG] (usb) (find_devices): HID device: 0416:7398 (usage_page=0xff1a usage=0x0093)
+[DEBUG] (usb) (probe): HydroShiftLCD identified: Lian Li HydroShift LCD 360S
+[DEBUG] (usb) (find_devices): HID device: 1130:1620 (usage_page=0x000c usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 0d8c:0005 (usage_page=0x000c usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 1038:2232 (usage_page=0xffc0 usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 1038:2232 (usage_page=0x000c usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 1038:2232 (usage_page=0xff00 usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 046d:4082 (usage_page=0x0001 usage=0x0006)
+[DEBUG] (usb) (find_devices): HID device: 046d:4082 (usage_page=0x0001 usage=0x0002)
+[DEBUG] (usb) (find_devices): HID device: 046d:4082 (usage_page=0xff00 usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 046d:4082 (usage_page=0xff00 usage=0x0002)
+[DEBUG] (usb) (find_devices): HID device: 046d:4082 (usage_page=0xff00 usage=0x0004)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0x0001 usage=0x0006)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0x0001 usage=0x0002)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0x000c usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0x0001 usage=0x0080)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0xff00 usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0xff00 usage=0x0002)
+[DEBUG] (usb) (find_devices): HID device: 046d:408a (usage_page=0xff00 usage=0x0004)
+[DEBUG] (usb) (find_devices): HID device: 046d:c52b (usage_page=0xff00 usage=0x0001)
+[DEBUG] (usb) (find_devices): HID device: 046d:c52b (usage_page=0xff00 usage=0x0002)
+[DEBUG] (usb) (find_devices): HID device: 046d:c52b (usage_page=0xff00 usage=0x0004)
+[DEBUG] (usb) (find_devices): HID device: 045e:0b13 (usage_page=0x0001 usage=0x0005)
+[DEBUG] (usb) (find_devices): searching PyUsbBus
+[DEBUG] (usb) (find_devices): PyUsbBus drivers: Hydro690Lc, HydroPro, Legacy690Lc, Modern690Lc, _Base690Lc, _ModernBase690Lc
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0002
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0003
+[DEBUG] (usb) (find_devices): USB device: 046d:c52b
+[DEBUG] (usb) (find_devices): USB device: 1038:2232
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0002
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0003
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0002
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0003
+[DEBUG] (usb) (find_devices): USB device: 0e8d:0616
+[DEBUG] (usb) (find_devices): USB device: 0d8c:0005
+[DEBUG] (usb) (find_devices): USB device: 1130:1620
+[DEBUG] (usb) (find_devices): USB device: 0416:7398
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0002
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0003
+[DEBUG] (usb) (find_devices): USB device: 0db0:0076
+[DEBUG] (usb) (find_devices): USB device: 1d6b:0002
+[DEBUG] (cli) (main): device: Lian Li HydroShift LCD 360S
+[DEBUG] (keyval) (__init__): data in /var/run/liquidctl/vid0416_pid7398/loc9
+[DEBUG] (keyval) (load): loaded rotation=90 (from /var/run/liquidctl/vid0416_pid7398/loc9/rotation)
+[DEBUG] (keyval) (store): stored rotation=0 (in /var/run/liquidctl/vid0416_pid7398/loc9/rotation)
+[INFO] (hydroshift_lcd) (set_screen): LCD rotation set to 0 degrees (applied on next image send)
